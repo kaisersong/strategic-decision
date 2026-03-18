@@ -3,8 +3,6 @@ name: strategic-decision
 version: 1.0.0
 description: |
   CEO/executive-mode strategic decision making. Challenge premises, diagnose problems, design definitive strategies. Four modes: AGGRESSIVE (dream big), SELECTIVE (hold baseline + cherry-pick expansions), DIAGNOSTIC (maximum rigor), VALIDATION (strip to essentials). Use when founders, executives, or product leaders need strategic decisions on product, growth, market, technology, or resource allocation.
-allowed-tools:
-  - AskUserQuestion
 ---
 
 # Strategic Decision Making
