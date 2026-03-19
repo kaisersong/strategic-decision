@@ -29,45 +29,9 @@ But your posture depends on what the user needs:
 
 ## Cognitive Patterns — How Great Strategists Think
 
-These are not checklist items. They are thinking instincts — the cognitive moves that separate 10x strategists from competent managers. Let them shape your perspective throughout the decision process. Don't enumerate them; internalize them.
+**Load `references/cognitive-patterns.md` to understand the 18 cognitive patterns that shape strategic thinking.**
 
-1. **Classification instinct** — Categorize every decision by reversibility x magnitude (Bezos one-way/two-way doors). Most things are two-way doors; move fast.
-
-2. **Paranoid scanning** — Continuously scan for strategic inflection points, cultural drift, talent erosion, process-as-proxy disease (Grove: "Only the paranoid survive").
-
-3. **Inversion reflex** — For every "how do we win?" also ask "what would make us fail?" (Munger).
-
-4. **Focus as subtraction** — Primary value-add is what to *not* do. Jobs went from 350 products to 10. Default: do fewer things, better.
-
-5. **People-first sequencing** — People, products, profits — always in that order (Horowitz). Talent density solves most other problems (Hastings).
-
-6. **Speed calibration** — Fast is default. Only slow down for irreversible + high-magnitude decisions. 70% information is enough to decide (Bezos).
-
-7. **Proxy skepticism** — Are our metrics still serving users or have they become self-referential? (Bezos Day 1).
-
-8. **Narrative coherence** — Hard decisions need clear framing. Make the "why" legible, not everyone happy.
-
-9. **Temporal depth** — Think in 5-10 year arcs. Apply regret minimization for major bets (Bezos at age 80).
-
-10. **Founder-mode bias** — Deep involvement isn't micromanagement if it expands (not constrains) the team's thinking (Chesky/Graham).
-
-11. **Wartime awareness** — Correctly diagnose peacetime vs wartime. Peacetime habits kill wartime companies (Horowitz).
-
-12. **Courage accumulation** — Confidence comes *from* making hard decisions, not before them. "The struggle IS the job."
-
-13. **Willfulness as strategy** — Be intentionally willful. The world yields to people who push hard enough in one direction for long enough. Most people give up too early (Altman).
-
-14. **Leverage obsession** — Find the inputs where small effort creates massive output. Technology is the ultimate leverage — one person with the right tool can outperform a team of 100 without it (Altman).
-
-15. **Second-order thinking** — Every decision has consequences, and those consequences have consequences. Think beyond the immediate.
-
-16. **Asymmetric upside** — Look for decisions where downside is capped but upside is unlimited. Asymmetry is where breakthroughs hide.
-
-17. **Optionality preservation** — Keep options open when uncertainty is high. Close options when certainty allows commitment.
-
-18. **Systems thinking** — Every decision exists in a system. Find the leverage points where small changes create systemic shifts.
-
-When you evaluate decisions, think through inversion reflex. When you challenge scope, apply focus as subtraction. When you assess timeline, use speed calibration. When you probe whether the decision solves a real problem, activate proxy skepticism. When you evaluate tradeoffs, apply second-order thinking.
+These are not checklist items — they are thinking instincts. Internalize them, don't enumerate them.
 
 ---
 
@@ -205,21 +169,15 @@ Once selected, commit fully. Do not silently drift.
 
 ## Section 1: Decision Framework Selection
 
-**Identify the decision type:**
+**Load `references/decision-frameworks.md` for detailed frameworks for each decision type.**
 
-| Type | Key Question | Primary Framework |
-|------|-------------|-------------------|
-| **Product** | What to build? | User needs + differentiation + feasibility |
-| **Growth** | How to scale? | AARRR funnel + bottlenecks + channels |
-| **Market** | Where to compete? | Market size + competition + positioning |
-| **Technology** | What to build with? | Capabilities + tradeoffs + trajectory |
-| **Organization** | Who does what? | Capabilities + culture + constraints |
-| **Resource** | What to invest in? | Impact + risk + opportunity cost |
-
-**If multiple types apply, prioritize:**
-1. What's the primary question the user is asking?
-2. What framework will yield the clearest decision?
-3. Can we decompose into multiple decisions?
+Identify the decision type:
+- **Product:** What to build?
+- **Growth:** How to scale?
+- **Market:** Where to compete?
+- **Technology:** What to build with?
+- **Organization:** Who does what?
+- **Resource:** What to invest in?
 
 **STOP.** AskUserQuestion confirming decision type and framework. Recommend + WHY. Do NOT proceed until user responds.
 
@@ -227,31 +185,7 @@ Once selected, commit fully. Do not silently drift.
 
 ## Section 2: Data Requirements
 
-**Minimum Data Set (varies by decision type):**
-
-**For Product decisions:**
-- [ ] **User pain:** What problem are we solving?
-- [ ] **User segments:** Who has this problem?
-- [ ] **Existing solutions:** What do users do today?
-- [ ] **Differentiation:** Why would users switch?
-
-**For Growth decisions:**
-- [ ] **AARRR metrics:** Current numbers for each stage
-- [ ] **Funnel data:** Where do users drop off most?
-- [ ] **Channel data:** Which channels drive acquisition?
-- [ ] **Competitor benchmarks:** How do our metrics compare?
-
-**For Market decisions:**
-- [ ] **Market size:** TAM / SAM / SOM
-- [ ] **Competitive landscape:** Who are we competing with?
-- [ ] **Market trends:** Where is the market heading?
-- [ ] **Regulatory landscape:** What constraints exist?
-
-**For Technology decisions:**
-- [ ] **Requirements:** What capabilities are needed?
-- [ ] **Options:** What technologies can meet requirements?
-- [ ] **Tradeoffs:** What do we gain/lose with each option?
-- [ ] **Team capabilities:** What can the team execute?
+**See decision-specific data requirements in `references/decision-frameworks.md`.**
 
 **If user says "I don't have time for data collection":**
 - That's a red flag. Say: "Collecting minimum data takes 2 hours. Making decisions on wrong assumptions can waste months. Let's identify the 3 most critical data points."
@@ -264,71 +198,7 @@ Once selected, commit fully. Do not silently drift.
 
 ## Section 3: Analysis & Diagnosis
 
-**Apply the selected framework:**
-
-### For Product Decisions:
-1. **User need validation:**
-   - Is this a real problem? How do we know?
-   - Is it urgent? Frequent? Expensive?
-   - Do users pay to solve it today?
-
-2. **Differentiation analysis:**
-   - What are existing solutions?
-   - What's our unique angle?
-   - Why would users switch?
-
-3. **Feasibility check:**
-   - Can we build this?
-   - What are the technical risks?
-   - What's the time-to-value?
-
-### For Growth Decisions:
-1. **AARRR funnel analysis:**
-   - Draw the funnel with conversion rates
-   - Identify biggest drop-off
-   - Find the bottleneck
-
-2. **Channel analysis:**
-   - Which channels work best?
-   - What's the CAC by channel?
-   - Which channels are scalable?
-
-3. **Competitive benchmarking:**
-   - How do our metrics compare?
-   - Where are we underperforming?
-   - What can we learn?
-
-### For Market Decisions:
-1. **Market sizing:**
-   - What's the TAM / SAM / SOM?
-   - Is the market growing?
-   - What's our potential market share?
-
-2. **Competitive analysis:**
-   - Who are the key players?
-   - What are their strengths/weaknesses?
-   - What's our positioning?
-
-3. **Market dynamics:**
-   - What trends are shaping the market?
-   - What's the regulatory environment?
-   - What are the entry barriers?
-
-### For Technology Decisions:
-1. **Requirements analysis:**
-   - What capabilities are non-negotiable?
-   - What's nice-to-have?
-   - What constraints exist (performance, scale, compliance)?
-
-2. **Option comparison:**
-   - What are the viable options?
-   - What are the tradeoffs for each?
-   - What's the community/ecosystem support?
-
-3. **Risk assessment:**
-   - What could go wrong?
-   - How do we mitigate?
-   - What's the fallback?
+**Apply the selected framework from `references/decision-frameworks.md`.**
 
 **AGGRESSIVE and SELECTIVE additions:**
 * What would make this analysis beautiful? Not just correct — elegant. Is there a framing that would make a new team member say "oh, that's obvious now"?
