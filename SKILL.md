@@ -1,8 +1,9 @@
 ---
 name: strategic-decision
-version: 1.0.0
+version: 1.1.0
 description: |
   CEO/executive-mode strategic decision making. Challenge premises, diagnose problems, design definitive strategies. Four modes: AGGRESSIVE (dream big), SELECTIVE (hold baseline + cherry-pick expansions), DIAGNOSTIC (maximum rigor), VALIDATION (strip to essentials). Use when founders, executives, or product leaders need strategic decisions on product, growth, market, technology, or resource allocation.
+benefits-from: [office-hours]
 ---
 
 # Strategic Decision Making
@@ -54,6 +55,40 @@ AI-assisted strategy makes the marginal cost of completeness near-zero. When you
 
 ## Step 0: Nuclear Scope Challenge + Mode Selection
 
+### 0-Pre: Prerequisite Check (run before anything else)
+
+**Step A — Related Decision Discovery**
+
+Search for past strategic decisions related to this topic:
+
+```bash
+mkdir -p ~/.strategic-decisions
+ls -t ~/.strategic-decisions/*.md 2>/dev/null | head -10
+```
+
+If files exist, grep for keyword overlap with the current topic (3-5 key terms). If matches found, surface them:
+- "Prior decision found: '{title}' on {date}. Key overlap: {1-line summary}."
+- Ask via AskUserQuestion: "Build on this prior decision or start fresh?"
+
+If no matches, proceed silently.
+
+**Step B — Office Hours Offer (easily skippable)**
+
+If the user hasn't provided a clear problem statement or strategic context, offer a quick check-in:
+
+> "Before we dive into the strategic review — do you want to quickly sharpen the problem first, or jump straight in?"
+
+Options:
+- **A) Jump straight in** — proceed to 0A immediately ← recommend this by default
+- **B) Office hours first** — run `/office-hours` to validate demand and clarify the problem before the strategic review
+
+If A (or user says anything like "let's go" / "start" / "skip"): proceed to 0A with no friction.
+If B: tell user to run `/office-hours` in another window, save the design doc, then return.
+
+**No re-offering.** If the user skips, never ask again.
+
+---
+
 ### 0A. Premise Challenge
 
 1. **Is this the right problem to solve?** Could a different framing yield a dramatically simpler or more impactful solution?
@@ -86,6 +121,56 @@ Map:
 
 ---
 
+### 0B-YC. Demand Forcing Questions (Product / Growth / Market decisions only)
+
+**Skip entirely for Technology / Organization / Resource decisions.** Also skip if the user says "skip this" or shows impatience.
+
+These questions are asked **ONE AT A TIME** via AskUserQuestion. Push on each until the answer is specific and evidence-based. Comfort means the decision-maker hasn't gone deep enough.
+
+**Smart routing based on stage:**
+- Pre-product / idea stage → Q1, Q2, Q3
+- Has users (not yet paying) → Q2, Q4, Q5
+- Has paying customers → Q4, Q5, Q6
+- Pure competitive / market positioning → Q1, Q2, Q6 only
+
+**Q1 — Demand Reality**
+"What's the strongest evidence you have that someone actually wants this — not 'is interested,' not 'agrees it's a problem,' but would be genuinely upset if this decision weren't made?"
+
+Push until you hear: specific behavior, money, panic when it breaks, scrambling if you vanished.
+Red flags: "People say it's interesting." "VCs are excited about the space." "We got survey responses."
+
+**Q2 — Status Quo**
+"What are your users doing right now to solve this problem — even badly? What does that workaround cost them?"
+
+Push until you hear: a specific workflow, hours spent, dollars wasted, tools duct-taped together.
+Red flag: "Nothing — there's no solution, that's the opportunity." If truly nothing exists, the problem may not be painful enough.
+
+**Q3 — Desperate Specificity**
+"Name the actual human who needs this most. What's their title? What gets them promoted? What gets them fired?"
+
+Push until you hear: a name, a role, a specific consequence they face. "Enterprises in healthcare" is not a person.
+
+**Q4 — Narrowest Wedge**
+"What's the smallest possible version of this strategy that creates real value — this quarter, not after the full platform is built?"
+
+Push until you hear: one specific action, one workflow, one metric that moves. Something shippable in weeks, not months.
+
+**Q5 — Observation**
+"Have you actually sat in the room while someone tried to solve this problem without your help? What did they do that surprised you?"
+
+Push until you hear: a specific surprise. If nothing surprised them, they're filtering through assumptions.
+
+**Q6 — Future-Fit**
+"If the world looks meaningfully different in 3 years — and it will — does this strategy become more essential or less?"
+
+Push until you hear: a specific claim about how their users' world changes and why that makes the strategy more valuable. "AI keeps getting better" is not a thesis.
+
+**Smart-skip:** If earlier answers already cover a later question, skip it. Only ask questions whose answers aren't yet clear.
+
+**Escape hatch:** If the user says "just go," "skip this," or provides a fully formed view → skip remaining questions, proceed to 0C.
+
+---
+
 ### 0C. Dream State Mapping
 
 Describe the ideal end state 12 months after this decision. Does this decision move toward that state or away from it?
@@ -99,7 +184,56 @@ Describe the ideal end state 12 months after this decision. Does this decision m
 
 ---
 
-### 0D. Mode-Specific Analysis
+### 0C-bis. Strategic Alternatives (MANDATORY)
+
+Before selecting a mode, produce 2-3 distinct strategic approaches. This is NOT optional — every decision must consider alternatives before committing.
+
+For each approach:
+```
+APPROACH A: [Name]
+  Summary: [1-2 sentences]
+  Effort:  [S/M/L/XL]
+  Risk:    [Low/Med/High]
+  Pros:    [2-3 bullets]
+  Cons:    [2-3 bullets]
+  Key assumption: [what must be true for this to work]
+
+APPROACH B: [Name]
+  ...
+
+APPROACH C: [Name] (optional — include if a meaningfully different path exists)
+  ...
+```
+
+Rules:
+- At least 2 approaches required. 3 preferred for non-trivial decisions.
+- One must be the **"minimal viable"** (smallest commitment, fastest to validate).
+- One must be the **"ideal"** (best long-term trajectory, most ambitious).
+- One can be **lateral** (unexpected framing, different level of the problem).
+- If only one approach exists, explain concretely why alternatives were eliminated.
+
+**RECOMMENDATION:** Choose [X] because [one-line reason].
+
+Do NOT proceed to mode selection (0E) without user approval of the chosen approach.
+
+---
+
+### 0D. Temporal Interrogation
+
+Think ahead to execution: what decisions will need to be made during implementation that should be resolved NOW in the strategy?
+
+```
+  WEEK 1-2 (foundations):   What must be decided immediately?
+  MONTH 1 (core execution): What ambiguities will surface?
+  MONTH 2-3 (scaling):      What will surprise the team?
+  MONTH 4+ (maturity):      What will they wish they'd planned for?
+```
+
+Surface these as questions for the user NOW, not as "figure it out later." Use AskUserQuestion for any that have meaningful tradeoffs. If all are obvious, state them and move on.
+
+---
+
+### 0E. Mode-Specific Analysis
 
 **For AGGRESSIVE** — run all three, then the opt-in ceremony:
 
@@ -138,7 +272,7 @@ Describe the ideal end state 12 months after this decision. Does this decision m
 
 ---
 
-### 0E. Mode Selection
+### 0F. Mode Selection
 
 In every mode, you are 100% in control. No scope is added without your explicit approval.
 
@@ -160,6 +294,8 @@ Present four options:
 * Decision involving >15 different elements → suggest VALIDATION unless user pushes back
 * User says "go big" / "ambitious" / "cathedral" → AGGRESSIVE, no question
 * User says "hold scope but tempt me" / "show me options" / "cherry-pick" → SELECTIVE, no question
+
+After mode is selected, confirm which strategic approach (from 0C-bis) applies under the chosen mode. AGGRESSIVE may favor the ideal approach; VALIDATION may favor the minimal viable approach.
 
 Once selected, commit fully. Do not silently drift.
 
@@ -339,6 +475,86 @@ One-page summary of:
 - The implementation plan
 - Key risks and mitigations
 
+### Persist Decision (AGGRESSIVE and SELECTIVE modes)
+
+After writing the Decision Summary, write it to disk so the thinking survives beyond this conversation.
+
+```bash
+mkdir -p ~/.strategic-decisions
+DATETIME=$(date +%Y%m%d-%H%M%S)
+SLUG=$(echo "$TOPIC" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | cut -c1-40)
+```
+
+Write to `~/.strategic-decisions/{date}-{slug}.md` with this format:
+
+```markdown
+---
+status: ACTIVE
+mode: {AGGRESSIVE / SELECTIVE / DIAGNOSTIC / VALIDATION}
+date: {YYYY-MM-DD}
+---
+# Strategic Decision: {Topic}
+
+## Decision
+{one-sentence decision}
+
+## Key Reasoning
+{3-5 bullet points}
+
+## Strategic Approach
+{which approach from 0C-bis was chosen and why}
+
+## Scope Decisions (AGGRESSIVE/SELECTIVE only)
+| # | Proposal | Decision | Reasoning |
+|---|----------|----------|-----------|
+
+## Implementation Plan (90-day)
+{key milestones}
+
+## Key Risks
+{top 3 with mitigations}
+
+## What We're Assuming
+{key assumptions}
+
+## Open Questions
+{unresolved items}
+```
+
+Before writing, check for existing decisions on the same topic (grep the directory). If found, link to the prior decision with a "Supersedes:" note.
+
+### Spec Review Loop
+
+After writing the Decision Summary to disk, dispatch an adversarial subagent to review it. This ensures genuine independent review — the subagent has no conversation context, only the document.
+
+**Step 1: Dispatch reviewer subagent**
+
+Use the Agent tool with this prompt:
+- File path of the decision document just written
+- "Read this strategic decision document and review it on 5 dimensions. For each, note PASS or list specific issues with suggested fixes. Output a quality score (1-10)."
+
+**Dimensions:**
+1. **Completeness** — Are all critical aspects of the decision addressed? Missing failure modes or assumptions?
+2. **Consistency** — Do different parts of the document agree? Contradictions between the decision, implementation, and risks?
+3. **Clarity** — Could a new executive act on this without asking questions? Ambiguous language?
+4. **Scope** — Is the decision appropriately bounded? Scope creep? Missing critical scope?
+5. **Feasibility** — Is the chosen approach actually executable with stated resources and timeline?
+
+**Step 2: Fix and re-dispatch (max 3 iterations)**
+
+If the reviewer returns issues:
+1. Fix each issue in the document on disk
+2. Re-dispatch the reviewer with the updated document
+3. Stop after 3 iterations
+
+**Convergence guard:** If the reviewer returns the same issues on consecutive iterations, stop the loop and add a "## Reviewer Concerns" section to the document.
+
+**Step 3: Report to user**
+
+"Your decision survived N rounds of adversarial review. M issues caught and fixed. Quality score: X/10."
+
+If the subagent is unavailable: skip silently, tell user "Spec review unavailable — presenting unreviewed decision."
+
 ### "NOT in scope" section
 List considerations explicitly excluded, with one-line rationale each.
 
@@ -379,8 +595,14 @@ What dependencies need unlocking?
 +====================================================================+
 | Mode selected        | AGGRESSIVE / SELECTIVE / DIAGNOSTIC / VALIDATION |
 | Decision type        | Product / Growth / Market / Tech / Org / Resource |
-| Current State Audit  | [key findings]                              |
-| Step 0               | [mode + key decisions]                      |
+| 0-Pre (prior decns)  | ___ related found, starting fresh / building on  |
+| 0A (premise)         | [key findings]                              |
+| 0B (current state)   | [key findings]                              |
+| 0B-YC (YC forcing)   | ran / skipped (Tech/Org/Resource/user request)   |
+| 0C (dream state)     | written                                     |
+| 0C-bis (alternatives)| ___ approaches, chose: _______              |
+| 0D (temporal)        | ___ decisions surfaced                      |
+| 0E/0F (mode)         | [mode + key scope decisions]                |
 | Section 1 (Framework)| Framework selected: _______                 |
 | Section 2 (Data)     | ___ data points collected, ___ gaps         |
 | Section 3 (Analysis) | [key diagnosis]                             |
@@ -395,6 +617,8 @@ What dependencies need unlocking?
 | Risk registry        | ___ risks, ___ mitigations                  |
 | Decision log         | written                                     |
 | Open questions       | ___ items                                   |
+| Persisted to disk    | ~/.strategic-decisions/{filename}.md        |
+| Spec review          | ___ rounds, ___ issues fixed, score: X/10   |
 | Lake Score           | X/Y recommendations chose complete option   |
 | Unresolved decisions | ___ (listed below)                          |
 +====================================================================+
