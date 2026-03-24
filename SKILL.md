@@ -1,6 +1,6 @@
 ---
 name: strategic-decision
-version: 1.1.0
+version: 1.2.0
 description: |
   CEO/executive-mode strategic decision making. Challenge premises, diagnose problems, design definitive strategies. Four modes: AGGRESSIVE (dream big), SELECTIVE (hold baseline + cherry-pick expansions), DIAGNOSTIC (maximum rigor), VALIDATION (strip to essentials). Use when founders, executives, or product leaders need strategic decisions on product, growth, market, technology, or resource allocation.
 benefits-from: [office-hours]
@@ -83,7 +83,10 @@ Options:
 - **B) Office hours first** — run `/office-hours` to validate demand and clarify the problem before the strategic review
 
 If A (or user says anything like "let's go" / "start" / "skip"): proceed to 0A with no friction.
-If B: tell user to run `/office-hours` in another window, save the design doc, then return.
+If B: read the office-hours skill inline:
+`~/.claude/skills/gstack/office-hours/SKILL.md`
+Follow it directly, skipping: Preamble, AskUserQuestion Format, Completeness Principle, Search Before Building, Contributor Mode, Completion Status Protocol, Telemetry. After office-hours completes, continue to 0A.
+If the Read fails: "Could not load /office-hours — proceeding directly."
 
 **No re-offering.** If the user skips, never ask again.
 
@@ -168,6 +171,16 @@ Push until you hear: a specific claim about how their users' world changes and w
 **Smart-skip:** If earlier answers already cover a later question, skip it. Only ask questions whose answers aren't yet clear.
 
 **Escape hatch:** If the user says "just go," "skip this," or provides a fully formed view → skip remaining questions, proceed to 0C.
+
+**Signal Synthesis (run after questions complete, before 0C):**
+
+Summarize what the answers reveal in 3-5 bullets. Focus on:
+- **Conviction signal**: Did the user give specific, evidence-based answers, or vague and hypothetical ones?
+- **Clarity signal**: Is the problem statement sharp enough to act on, or still fuzzy?
+- **Wedge signal**: Is there a clear narrow entry point, or is the strategy still "boil the ocean"?
+- **Timing signal**: Is there urgency driving this decision, or is it speculative?
+
+Surface the synthesis briefly: "Based on your answers, here's what I'm seeing: [bullets]." Then proceed to 0C.
 
 ---
 
@@ -523,37 +536,27 @@ date: {YYYY-MM-DD}
 
 Before writing, check for existing decisions on the same topic (grep the directory). If found, link to the prior decision with a "Supersedes:" note.
 
-### Spec Review Loop
+### Outside Voice (optional)
 
-After writing the Decision Summary to disk, dispatch an adversarial subagent to review it. This ensures genuine independent review — the subagent has no conversation context, only the document.
+After writing the Decision Summary, offer a cold-read challenge:
 
-**Step 1: Dispatch reviewer subagent**
+> "Want a quick outside-eyes check? I'll read only the decision document — as if I hadn't seen this conversation — and look for what the review missed."
 
-Use the Agent tool with this prompt:
-- File path of the decision document just written
-- "Read this strategic decision document and review it on 5 dimensions. For each, note PASS or list specific issues with suggested fixes. Output a quality score (1-10)."
+Options: A) Yes  B) Skip
 
-**Dimensions:**
-1. **Completeness** — Are all critical aspects of the decision addressed? Missing failure modes or assumptions?
-2. **Consistency** — Do different parts of the document agree? Contradictions between the decision, implementation, and risks?
-3. **Clarity** — Could a new executive act on this without asking questions? Ambiguous language?
-4. **Scope** — Is the decision appropriately bounded? Scope creep? Missing critical scope?
-5. **Feasibility** — Is the chosen approach actually executable with stated resources and timeline?
+If B: proceed to remaining outputs.
 
-**Step 2: Fix and re-dispatch (max 3 iterations)**
+If A: switch perspective explicitly. Read only the persisted decision document (not the conversation). From this cold-read posture, identify:
+- **Logical gaps**: claims made without evidence, leaps in reasoning
+- **Unstated assumptions**: things assumed true that could easily be false
+- **Simpler path**: is there a fundamentally easier way to achieve the same outcome?
+- **Blind spots**: what did the review take for granted?
 
-If the reviewer returns issues:
-1. Fix each issue in the document on disk
-2. Re-dispatch the reviewer with the updated document
-3. Stop after 3 iterations
+Present findings tersely. For each substantive issue, ask:
+> "Add this to Open Questions / Risk Registry?"
+> A) Yes  B) Skip
 
-**Convergence guard:** If the reviewer returns the same issues on consecutive iterations, stop the loop and add a "## Reviewer Concerns" section to the document.
-
-**Step 3: Report to user**
-
-"Your decision survived N rounds of adversarial review. M issues caught and fixed. Quality score: X/10."
-
-If the subagent is unavailable: skip silently, tell user "Spec review unavailable — presenting unreviewed decision."
+No iteration loops. One pass, done.
 
 ### "NOT in scope" section
 List considerations explicitly excluded, with one-line rationale each.
